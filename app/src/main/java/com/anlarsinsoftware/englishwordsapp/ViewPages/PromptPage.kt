@@ -210,7 +210,7 @@ class PromptPage : BaseCompact() {
         onResult: (String) -> Unit,
         onError: (String) -> Unit
     ) {
-        val apiKey = "Bearer ${DEFAULT_API_KEY}" // Veya OPENAI_API_KEY
+        val apiKey = "Bearer ${DEFAULT_API_KEY}" 
 val url = "https://api.openai.com/v1/chat/completions"
         val prompt = "Write a very short paragraph for children using these English words : $words"
 
