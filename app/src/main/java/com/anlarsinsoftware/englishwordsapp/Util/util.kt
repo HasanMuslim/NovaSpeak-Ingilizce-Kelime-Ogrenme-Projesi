@@ -1,4 +1,4 @@
-import com.anlarsinsoftware.englishwordsapp.Util.DEFAULT_API_KEY
+package com.anlarsinsoftware.englishwordsapp.Util
 
 import android.content.Intent
 
