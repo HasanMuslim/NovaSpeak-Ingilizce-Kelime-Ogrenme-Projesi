@@ -1,157 +1,191 @@
-# 🐦 NovaSpeak – İngilizceyi Kalıcı Öğren
+<div align="center">
 
-**NovaSpeak**, İngilizce kelimeleri uzun vadede kalıcı şekilde öğretmeyi hedefleyen, yapay zekâ destekli, eğitici ve etkileşimli bir mobil uygulamadır.
+# 🚀 NovaSpeak
 
-\---
+*İngilizceyi Kalıcı Öğren*
 
-## 🚀 Özellikler
+</div>
 
-### 📚 Akıllı Quiz Sistemi
+---
 
-* Firestore’dan **Kullanıcının belirlediği kadar kelime** çekilir.
-* Her kelime için ilgili bir **görsel ve o kelimenin karşılığı** gösterilir.
-* Kullanıcı bilmediği kelimeyi atlayabilir.
-* Quiz bittikten sonra yanlış yaptığı kelimeye geri dönüp doğrusunu görebilir.
-* Quiz bittiğinde doğru,yanlış ve çözülen soru sayısını görebilir.
-* Dilerse quizden onay verdiği taktirde çıkış yapabilir.
+> **NovaSpeak**, İngilizce kelimeleri yüzeysel ezberlemek yerine uzun vadede kalıcı biçimde öğretmek amacıyla geliştirilmiş, yapay zekâ destekli bir Android uygulamasıdır. Spaced Repetition (Aralıklı Tekrar) yöntemi, AI entegrasyonu ve oyunlaştırma unsurlarını bir arada sunarak öğrenmeyi hem etkili hem eğlenceli hale getirir.
 
-### 🧠 Kalıcı Öğrenme Aşamaları (Spaced Repetition)
+---
 
-Her kelimenin "öğrenilmiş" sayılması için şu 6 zaman aralığında doğru cevaplanması gerekir:
+## İçindekiler
 
-* 1 Gün
-* 1 Hafta
-* 1 Ay
-* 3 Ay
-* 6 Ay
-* 1 Yıl
-Bu aşamaların herhangi birinde yanlış yapması o kelime için başa dönülmesine sebep olur.
-(Sıralama sisteminde adil olması açısından yanlış yaptığında o kelime için doğru sayısı sıfırlanır.)
+- [Öğrenme Sistemi](#️-öğrenme-sistemi)
+- [Ekranlar](#️-ekranlar)
+- [Yapay Zekâ](#-yapay-zekâ)
+- [Teknolojiler](#️-teknolojiler)
 
-\---
+---
 
-# 📱 Ana Sayfa (HomePageActivity)
+## ⏱️ Öğrenme Sistemi
 
-Bu sınıf, uygulamanın kullanıcıya ilk gösterilen ana ekranıdır. Kullanıcı burada genel istatistiklerini, yanlış cevapladığı kelimeleri, liderlik sıralamasını ve bazı özel aksiyonları görebilir.
+Bir kelimenin gerçekten "öğrenilmiş" sayılabilmesi için farklı zaman aralıklarında tekrar tekrar doğru cevaplanması gerekir. NovaSpeak bu amaca yönelik **6 aşamalı Spaced Repetition** döngüsü kullanır:
 
-### 🎯 Temel Özellikler
+```
+[ 1 Gün ] → [ 1 Hafta ] → [ 1 Ay ] → [ 3 Ay ] → [ 6 Ay ] → [ 1 Yıl ]
+```
 
-|Özellik|Açıklama|
-|-|-|
-|🔁 **Slider (ViewFlipper)**|Kullanıcıya kelime ekleme, quiz yapma, geri bildirim gönderme ve yapay zeka ile hikaye oluşturma gibi özellikleri tanıtan görsel kartlar.|
-|🏆 **Liderlik Tablosu**|Firebase üzerinden çekilen kullanıcı verileriyle başarı sıralaması listesi gösterilir (BottomSheet ile açılır).|
-|❌ **Yanlış Cevaplar**|Son 20 yanlış cevaplanan kelime listesi (aşama = 1 olanlar) kullanıcının tekrar çalışması için gösterilir.|
-|📧 **Geri Bildirim**|Tek tıklamayla e-posta uygulamasına yönlendirme yapılır.|
-|🤖 **PenAI Entegrasyonu**|Yapay zekayla kelimelerden hikaye oluşturma ve görsel üretme özelliğine geçiş.|
-|🎮 **Mini Oyun**|Kullanıcının kelime öğrenimini pekiştirmesi için bulmaca oyunu.|
+Tüm aşamaları başarıyla tamamlayan kelime **"kalıcı öğrenildi"** olarak işaretlenir. Herhangi bir aşamada yanlış yanıt verilirse kelime başa döner ve doğru sayısı sıfırlanır; bu sayede sıralama sistemi adil biçimde çalışır.
 
-\---
+---
 
-# 🅰️ Sözlük sayfası
+## 🗂️ Ekranlar
 
-Eklenen kelimeler alfabetik olarak listelenir listelenen içerik :
+### 🏡 Ana Sayfa — `HomePageActivity`
 
-* Kelimenin ingilizcesi ve türkçesi
-* İngilizce kelimenin baş harfi
-**Arama özelliği**
--Hem ingilizce hemde türkçe kelimelere ilişkin arama özelliği
--Kullanıcının aradığı kelimeyi hem baş harfi ile hemde arama ile kolayca bulabilmesi sağlanmıştır
+Uygulamanın kullanıcıya ilk gösterilen ana ekranıdır. Kullanıcı burada genel istatistiklerini, yanlış cevapladığı kelimeleri, liderlik sıralamasını ve bazı özel aksiyonları görebilir.
 
-  ### 🖱️Tıklanma
+| Bileşen | Açıklama |
+|---------|----------|
+| 🃏 Slider (ViewFlipper) | Kullanıcıya kelime ekleme, quiz yapma, geri bildirim gönderme ve yapay zekâ ile hikâye oluşturma gibi özellikleri tanıtan görsel kartlar |
+| 🥇 Liderlik Tablosu | Firebase üzerinden çekilen kullanıcı verileriyle başarı sıralaması listesi gösterilir; BottomSheet ile açılır |
+| 🚫 Yanlış Cevaplar | Son 20 yanlış cevaplanan kelime listesi (aşama = 1 olanlar) kullanıcının tekrar çalışması için gösterilir |
+| ✉️ Geri Bildirim | Tek tıklamayla e-posta uygulamasına yönlendirme yapılır |
+| 🤖 NovaAI Entegrasyonu | Yapay zekâyla kelimelerden hikâye oluşturma ve görsel üretme özelliğine geçiş sağlanır |
+| 🕹️ Mini Oyun | Kullanıcının kelime öğrenimini pekiştirmesi için bulmaca oyununa erişim |
 
-* Listelenen kelimeye tıklandığında
-* Kelimenin türkçe ve ingilizcesi
-* Kelimeye ilişkin görsel
-* Kelimenin geçtiği iki adet cümle gösterilir.
-* TTS özelliği aşağıda verilmiştir.
+---
 
-  ## 🖋️ Kelime ekleme sayfası
+### 📖 Sözlük Sayfası
 
-  Kullanıcılar kendileri sisteme kelime ekleyebilirler kelime içeriği:
+Sisteme eklenen tüm kelimeler **alfabetik sırayla** listelenir. Kullanıcı dilediği kelimeye kolayca ulaşabilir ve detaylarını inceleyebilir.
 
-* Kelimeye ilişkin görsel
-* Kelimenin ingilizcesi ve türkçe karşılığı
-* İngilizce kelimenin kullanıldığı iki adet cümle
+**Listelenen İçerik:**
+- Kelimenin İngilizcesi ve Türkçesi
+- İngilizce kelimenin baş harfi (bölüm ayracı olarak gösterilir)
 
-  ## 🔊 TTS (Text To Spech)
+**Arama Özelliği:**
+- Hem İngilizce hem de Türkçe kelimeler üzerinden arama yapılabilir
+- Kullanıcı, aradığı kelimeyi baş harfine göre filtreleyerek veya arama çubuğunu kullanarak hızlıca bulabilir
 
-* Kelimeye ve cümleye tıklanınca:
+**Kelimeye Tıklandığında:**
+- Kelimenin Türkçe ve İngilizce karşılığı yan yana gösterilir
+- Kelimeye ilişkin görsel görüntülenir
+- Kelimenin geçtiği iki adet örnek İngilizce cümle listelenir
+- Kelimeye veya cümleye tıklanınca İngilizcesi yüksek sesle okunur; eş zamanlı olarak **Lottie animasyonu** oynar (🎙️ TTS)
 
-  * İngilizcesi yüksek sesle okunur.
-  * Eş zamanlı olarak **Lottie animasyonu** oynar.
+---
 
-  \---
+### ✏️ Kelime Ekleme Sayfası
 
-  # ProfileActivity.kt
+Kullanıcılar öğrenmek istedikleri kelimeleri sisteme kendileri ekleyebilir. Uygulama yalnızca hazır kelime listeleriyle sınırlı kalmaz; kişisel kelime havuzu oluşturmaya olanak tanır.
 
-  ## 📌 Temel Özellikler
+Her kelime kaydı aşağıdaki bilgileri içerir:
 
-* Firebase Authentication ile kullanıcı giriş bilgileri gösterilir.
-* Kullanıcı adı, e-posta ve profil resmi gibi bilgiler görüntülenir.
-* **Admin girişi** için gizli bir kod sistemi içerir.
-* Kullanıcı ayarları menüsü popup olarak açılır.
-* Sekmeli yapı: `Quiz Kelimeleri` ve `Öğrenilenler` tabları içerir.
-* Geri bildirim için mail gönderme ve oturum kapatma özellikleri bulunur.
+- Kelimeyi temsil eden görsel
+- Kelimenin İngilizcesi ve Türkçe karşılığı
+- İngilizce kelimenin kullanıldığı iki adet örnek cümle
 
-  ### ✨ Yapay Zekâ Destekli Hikâye Üretimi
+---
 
-* Kullanıcı 5 İngilizce kelime seçer
-* Bu kelimelerden:
+### 📝 Quiz Sistemi
 
-  * Open Router API ile **hikâye yazılır**
-  * Pollinations ile **hikâye temasına %100 uygun görsel** üretilir.
+Quiz ekranı, öğrenilen kelimelerin pekiştirildiği ana pratik alanıdır. Her oturum kullanıcı tercihlerine göre dinamik biçimde şekillenir.
 
-  \---
+- Firestore'dan **kullanıcının belirlediği kadar kelime** çekilir
+- Her kelime için ilgili bir **görsel ve o kelimenin Türkçe karşılığı** gösterilir
+- Kullanıcı o an bilmediği kelimeyi atlayabilir ve ilerleyebilir
+- Quiz tamamlandıktan sonra yanlış yapılan kelimelere geri dönülerek doğru cevap görülebilir
+- Quiz bittiğinde doğru, yanlış ve çözülen toplam soru sayısı özetlenerek gösterilir
+- Quizden erken çıkmak istendiğinde onay mekanizması devreye girer
 
-  # 🧠 Bulmaca Oyunu (5 Harfli İngilizce Kelime Tahmin Oyunu)
+---
 
-  Bu ekran, kullanıcıların 5 harfli İngilizce kelimeleri tahmin etmeye çalıştığı interaktif bir bulmaca oyunudur. Oyunda kullanıcıya sınırlı sayıda hak verilir ve doğru tahminlerle skor kazanır. Wordle benzeri bir yapıya sahiptir.
+### 👤 Profil Sayfası — `ProfileActivity`
 
-  ## 🚀 Özellikler
+Kullanıcıya ait tüm hesap bilgilerinin ve öğrenme ilerlemesinin yönetildiği ekrandır.
 
-* 📚 Üç farklı kelime kaynağından seçim:
+**Temel Özellikler:**
+- Firebase Authentication ile kullanıcı giriş bilgileri (ad, e-posta, profil fotoğrafı) görüntülenir
+- **Admin girişi** için gizli bir kod sistemi içerir
+- Kullanıcı ayarları menüsü popup olarak açılır
+- Sekmeli yapı: `Quiz Kelimeleri` ve `Öğrenilenler` tabları ayrı ayrı listelenir
+- Geri bildirim göndermek için tek tıkla mail uygulamasına yönlendirme yapılır
+- Oturum kapatma özelliği bulunur
 
-  * Tüm kelimeler (veritabanındaki tüm 5 harfli kelimeler)
-  * Öğrenilmiş kelimeler (kullanıcının daha önce öğrendiği kelimeler)
-  * Quiz'de karşılaşılan kelimeler
-* 🎮 6 tahmin hakkı
-* 🌈 Renkli geri bildirim sistemi:
+---
 
-  * 🟩 Doğru harf ve doğru yer
-  * 🟨 Doğru harf ama yanlış yer
-  * ⬛ Yanlış harf
-* 🧩 Grid tabanlı oyun alanı (EditText hücreleriyle)
-* 💡 İpucu sistemi
-* ⚙️ Ayarlar penceresi ile kelime kaynağı seçimi
-* 📈 Skor takibi
-* 🔄 Yeni oyun başlatma butonu
-* 🔄 Firestore ile dinamik kelime verisi
-* 🔐 Firebase Authentication ile kullanıcı bazlı kayıt
+### 🔤 Wordle — Bulmaca Oyunu
 
-  \---
+Kullanıcıların 5 harfli İngilizce kelimeleri tahmin etmeye çalıştığı interaktif bir bulmaca oyunudur. Wordle'a benzer bir yapıya sahiptir; sınırlı sayıda hak verilir ve doğru tahminlerle skor kazanılır.
 
-  # 📄 RaporPage - İngilizce Kelime Uygulaması Raporlama Ekranı
+**Kelime Kaynakları:**
 
-  ## 🚀 Temel Özellikler
+Oyun başlamadan önce kullanıcı üç farklı kelime havuzundan birini seçebilir:
+- **Tüm kelimeler** — veritabanındaki tüm 5 harfli kelimeler
+- **Öğrenilmiş kelimeler** — kullanıcının daha önce öğrendiği kelimeler
+- **Quiz'de karşılaşılan kelimeler** — daha önce quiz ekranında görülen kelimeler
 
-* Kullanıcının doğru/yanlış cevap sayısını görüntüleme
-* Son doğru yanıt verilen tarihi gösterme
-* Başarı oranı hesaplama
-* Kullanıcı verilerini Firestore'a güncelleme
-* PDF formatında kişisel öğrenim raporu oluşturma ve paylaşma
+**Renk Geri Bildirim Sistemi:**
 
-  \---
+| Renk | Anlam |
+|------|-------|
+| 🟩 Yeşil | Doğru harf, doğru konum |
+| 🟨 Sarı | Doğru harf, yanlış konum |
+| ⬛ Gri | Kelimede bulunmayan harf |
 
-  ## 📦 Kullanılan Teknolojiler
+**Oyun Özellikleri:**
 
-|Katman|Teknoloji / Araçlar|
-|-|-|
-|☁️ **Backend**|Firebase Authentication, Firebase Firestore, Firebase Storage|
-|🧠 **Yapay Zekâ**|OpenAI API (GPT-4), PollinationsAI / Wiro AI|
-|🔊 **Seslendirme**|Android TextToSpeech (TTS)|
-|🎨 **UI / UX**|Material Design, Lottie Animations, ViewFlipper, BottomSheetDialog, TabLayout, PopupMenu|
-|📱 **Android Geliştirme**|Kotlin, Android SDK, View Binding, Activity \& Fragment yapısı, ViewPager2|
-|🖼️ **Görsel İşleme**|Picasso, RoundedCornersTransformation, Lottie|
-|🧾 **PDF \& Raporlama**|PdfDocument (Android), FileProvider, Intent ile dosya paylaşımı|
-|🧩 **Eğitsel Oyun**|Puzzle Game Logic (özelleştirilmiş)|
-|🗂️ **Listeleme**|RecyclerView, Custom Adapter|
+| Özellik | Detay |
+|---------|-------|
+| 🎯 Tahmin hakkı | 6 deneme |
+| 🧩 Oyun alanı | Grid tabanlı yapı (EditText hücreleriyle) |
+| 🔎 İpucu sistemi | Mevcut |
+| ⚙️ Ayarlar penceresi | Kelime kaynağı seçimi |
+| 📈 Skor takibi | Firebase Authentication ile kullanıcı bazlı kayıt |
+| 🔄 Yeni oyun | Buton ile anında yeni oyun başlatılabilir |
+| 🔗 Dinamik veri | Firestore üzerinden anlık kelime verisi |
+
+---
+
+### 📊 Raporlama Sayfası — `RaporPage`
+
+Kullanıcının öğrenme sürecini sayısal verilerle takip edebildiği ve bu verileri dışa aktarabildiği ekrandır.
+
+- Kullanıcının toplam doğru ve yanlış cevap sayısını görüntüleme
+- Son doğru yanıt verilen tarihi gösterme
+- Genel başarı oranı hesaplama ve görselleştirme
+- Güncel kullanıcı verilerini Firestore'a güncelleme
+- **PDF formatında kişisel öğrenim raporu oluşturma ve paylaşma**
+
+---
+
+## 🤖 Yapay Zekâ
+
+### 🌟 AI Destekli Hikâye Üretimi
+
+Profil ekranından erişilen bu özellik, öğrenilen kelimeleri daha akılda kalıcı hale getirmek için hikâye anlatımını ve görsel üretimi bir araya getirir.
+
+Kullanıcı **5 İngilizce kelime** seçer; sistem bu kelimeleri kullanarak otomatik olarak üretir:
+
+```
+Kelimeler  →  Open Router API  →  Özgün İngilizce hikâye
+                    ↓
+             Pollinations AI   →  Hikâye temasına %100 uygun görsel
+```
+
+### 🎙️ Text To Speech (TTS)
+
+Sözlük sayfasında herhangi bir kelimeye veya örnek cümleye tıklandığında:
+1. İlgili İngilizce metin **yüksek sesle okunur**
+2. Ses çıkışıyla **eş zamanlı olarak Lottie animasyonu** oynar
+
+---
+
+## 🛠️ Teknolojiler
+
+| Katman | Araçlar |
+|--------|---------|
+| ☁️ Backend | Firebase Authentication · Firebase Firestore · Firebase Storage |
+| 🤖 Yapay Zekâ | OpenAI API (GPT-4) · PollinationsAI · Wiro AI |
+| 🎙️ Seslendirme | Android TextToSpeech (TTS) |
+| 🖌️ UI / UX | Material Design · Lottie Animations · ViewFlipper · BottomSheetDialog · TabLayout · PopupMenu |
+| 📱 Android Geliştirme | Kotlin · Android SDK · View Binding · Activity & Fragment yapısı · ViewPager2 |
+| 🖼️ Görsel İşleme | Picasso · RoundedCornersTransformation · Lottie |
+| 📑 PDF & Raporlama | PdfDocument (Android) · FileProvider · Intent ile dosya paylaşımı |
+| 🕹️ Eğitsel Oyun | Özelleştirilmiş Puzzle Game Logic |
+| 🗃️ Listeleme | RecyclerView · Custom Adapter |
