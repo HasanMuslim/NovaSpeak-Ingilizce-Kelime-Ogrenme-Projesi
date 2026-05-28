@@ -210,8 +210,8 @@ class PromptPage : BaseCompact() {
         onResult: (String) -> Unit,
         onError: (String) -> Unit
     ) {
-        val apiKey = "Bearer ${OPEN_ROUTER_API_KEY}"
-        val url = "https://openrouter.ai/api/v1/chat/completions"
+        val apiKey = "Bearer ${DEFAULT_API_KEY}" // Veya OPENAI_API_KEY
+val url = "https://api.openai.com/v1/chat/completions"
         val prompt = "Write a very short paragraph for children using these English words : $words"
 
 
