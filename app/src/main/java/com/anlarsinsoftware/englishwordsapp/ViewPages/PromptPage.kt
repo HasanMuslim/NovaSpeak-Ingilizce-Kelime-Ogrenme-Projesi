@@ -38,7 +38,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
-
+import com.anlarsinsoftware.englishwordsapp.Util.DEFAULT_API_KEY
 class PromptPage : BaseCompact() {
 
     private lateinit var binding: ActivityPromptPageBinding
